@@ -1,14 +1,17 @@
 let posts=[ ];
 
-const likedPostsId = [];
-const reportedPostsId = [];
+let likedPostsId = [];
+let reportedPostsId = [];
 
 const getLikedPosts = () => {
-    return posts.filter((post) => likedPostsId.includes(post.id));
+    const likedPosts = posts.filter((post) => likedPostsId.includes(post.id));
+    likedPostsId = [];
+    return likedPosts;
 };
 
 const getReportedPosts = () => {
-    return posts.filter((post) => reportedPostsId.includes(post.id));
+    const reportedPosts = posts.filter((post) => reportedPostsId.includes(post.id));
+    return reportedPosts;
 };
 
 const isLiked = (id) => {
@@ -16,14 +19,13 @@ const isLiked = (id) => {
 };
 
 const addToLiked = (id) => {
-    likedPostsId.push(id); 
+    likedPostsId.push(id);
+    console.log(likedPostsId);
     showPosts(posts);
 };
 
 const reportPost = (id) => {
-  // console.log(id);
     reportedPostsId.push(id);
-    // console.log(reportedPostsId);
     const remainingPosts = posts.filter((post) => !reportedPostsId.includes(post.id));
     showPosts(remainingPosts);
 };
@@ -135,7 +137,6 @@ const createPost = (post) => {
 };
 
 const showPosts = (posts) => {
-  console.log(posts);
     const productsContainer = document.getElementById( "posts" );
     productsContainer.innerHTML = "";
 
@@ -147,6 +148,7 @@ const showPosts = (posts) => {
 
 const displayLikedPosts = () => {
     const likedPosts = getLikedPosts();
+    console.log(likedPosts);
     likedPosts.forEach((post) => {
         const div = createPost(post);
         document.getElementById( "liked" ).appendChild(div);
