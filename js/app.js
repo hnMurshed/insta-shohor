@@ -13,13 +13,13 @@ const isLiked = (id) => {
 // add to liked and get liked posts
 const addToLiked = (id) => {
     likedPostsId.push(id);
-    
+
     posts.forEach(post => {
-      if (post.id === id) {
+      if (post.id === id && likedPosts.indexOf(post) === -1) {
         likedPosts.push(post);
       } 
     })
-
+    console.log(likedPosts);
     showPosts(posts);
 };
 
@@ -28,10 +28,11 @@ const reportPost = (id) => {
     reportedPostsId.push(id);
 
     posts.forEach(post => {
-      if (post.id === id) {
+      if (post.id === id && reportedPosts.indexOf(post) === -1) {
         reportedPosts.push(post);
       } 
     })
+    console.log(reportedPosts);
 
     const remainingPosts = posts.filter((post) => !reportedPostsId.includes(post.id));
     showPosts(remainingPosts);
