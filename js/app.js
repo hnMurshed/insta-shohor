@@ -21,7 +21,9 @@ const addToLiked = (id) => {
 };
 
 const reportPost = (id) => {
+  // console.log(id);
     reportedPostsId.push(id);
+    // console.log(reportedPostsId);
     const remainingPosts = posts.filter((post) => !reportedPostsId.includes(post.id));
     showPosts(remainingPosts);
 };
@@ -153,7 +155,7 @@ const displayLikedPosts = () => {
 
 const displayReportedPosts = () => {
     const reportedPosts = getReportedPosts();
-    posts.forEach((post) => {
+    reportedPosts.forEach((post) => {
         const div = createPost(post);
         document.getElementById( "reported" ).appendChild(div);
     });
