@@ -19,7 +19,7 @@ const addToLiked = (id) => {
         likedPosts.push(post);
       } 
     })
-    console.log(likedPosts);
+    
     showPosts(posts);
 };
 
@@ -32,7 +32,6 @@ const reportPost = (id) => {
         reportedPosts.push(post);
       } 
     })
-    console.log(reportedPosts);
 
     const remainingPosts = posts.filter((post) => !reportedPostsId.includes(post.id));
     showPosts(remainingPosts);
